@@ -19,8 +19,8 @@ struct Object
 	enum Type
 	{
 		Entity,
-		Chest,
-		LargeChest
+		//Chest,
+		//LargeChest
 	};
 
 	Type m_type;
@@ -132,24 +132,24 @@ void WINAPI hk_glOrtho(
 			glm::vec3 scale = glm::vec3(1.0f);
 
 			switch (object.m_type)
-			{
+			{   //Here
 				case Object::Entity:
 					color = glm::vec4(0.18f, 1.0f, 0.52f, 1.0f);
 					translate = glm::vec3(0.0f, -1.0f, 0.0f);
-					scale = glm::vec3(0.5f, 1.0f, 0.5f);
+					scale = glm::vec3(0.3f, 1.0f, 0.3f);
 				break;
 
-				case Object::Chest:
-					color = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
-					translate = glm::vec3(0.5f, 0.5f, 0.5f);
-					scale = glm::vec3(0.5f, 0.5f, 0.5f);
-				break;
+				//case Object::Chest:
+				//	color = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
+				//	translate = glm::vec3(0.5f, 0.5f, 0.5f);
+				//	scale = glm::vec3(0.5f, 0.5f, 0.5f);
+				//break;
 
-				case Object::LargeChest:
-					color = glm::vec4(0.91f, 0.87f, 0.42f, 1.0f);
-					translate = glm::vec3(1.0f, 0.5f, 0.5f);
-					scale = glm::vec3(1.0f, 0.5f, 0.5f);
-				break;
+				//case Object::LargeChest:
+				//	color = glm::vec4(0.91f, 0.87f, 0.42f, 1.0f);
+				//	translate = glm::vec3(1.0f, 0.5f, 0.5f);
+				//	scale = glm::vec3(1.0f, 0.5f, 0.5f);
+				//break;
 			}
 
 			// Transforming matrices (shifting a point to the center of object)
@@ -195,13 +195,13 @@ void WINAPI hk_glScalef(GLfloat x, GLfloat y, GLfloat z)
 // Hooked glTranslatef function
 void WINAPI hk_glTranslatef(GLfloat x, GLfloat y, GLfloat z)
 {
-	// Called at the beginning of drawing a chest or ender chest
-	if (x == 0.5f and y == 0.4375f and z == 0.9375f)
-		objects.emplace_back(Object::Chest);
+	//// Called at the beginning of drawing a chest or ender chest
+	//if (x == 0.5f and y == 0.4375f and z == 0.9375f)
+	//	objects.emplace_back(Object::Chest);
 
-	// Called at the beginning of drawing a large chest
-	else if (x == 1.0f and y == 0.4375f and z == 0.9375f)
-		objects.emplace_back(Object::LargeChest);
+	//// Called at the beginning of drawing a large chest
+	//else if (x == 1.0f and y == 0.4375f and z == 0.9375f)
+	//	objects.emplace_back(Object::LargeChest);
 
 	// Calling the original glTranslatef function
 	fn_glTranslatef(x, y, z);
